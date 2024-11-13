@@ -343,20 +343,26 @@ console.log(!false); // true
 
 ## Q. Explain `Undefined` and `Null` data type in Node.js?
 
-In node.js, if a variable is defined without assigning any value, then that will take **undefined** as value. If we assign a null value to the variable, then the value of the variable becomes **null**.
+  **undefined:**Represents a variable that has been declared but not assigned a value. It indicates the absence of initialization.
 
 **Example:**
 
 ```js
-/**
- * NULL and UNDEFINED Data Type
- */
+//undefined
 let x;
-console.log(x); // undefined
-
-let y = null;
-console.log(y); // null
+console.log(x);  // Output: undefined
 ```
+
+  **Null:** Represents an intentional absence of any object value. It’s often used to signify "no value" or "empty."
+
+**Example:**
+
+  ```js
+//null
+let y = null;
+console.log(y);  // Output: null
+```
+
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>

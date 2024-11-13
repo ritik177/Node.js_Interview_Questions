@@ -825,9 +825,7 @@ Program Started
 
 ## Q. What is callback function in Node.js?
 
-A callback is a function which is called when a task is completed, thus helps in preventing any kind of blocking and a callback function allows other code to run in the meantime.
-
-Callback is called when task get completed and is asynchronous equivalent for a function. Using Callback concept, Node.js can process a large number of requests without waiting for any function to return the result which makes Node.js highly scalable.
+A callback function in Node.js is a function passed as an argument to another function and is executed after the completion of that function. Callbacks are commonly used to handle asynchronous operations.
 
 **Example:**
 
@@ -835,22 +833,24 @@ Callback is called when task get completed and is asynchronous equivalent for a 
 /**
  * Callback Function
  */
-function myAsync(a, b, callback) {
-  setTimeout(function () {
-    callback(a + b);
-  }, 100);
+function fetchData(callback) {
+  setTimeout(() => {
+    console.log("Data fetched");
+    callback();  // Calling the callback function
+  }, 2000);
 }
-console.log("Before Asynchronous Call");
 
-myAsync(10, 20, function (result) {
-  console.log("Sum: " + result);
-});
-console.log("After Asynchronous Call");
+function processData() {
+  console.log("Processing data...");
+}
+
+fetchData(processData);  // Pass processData as a callback
+
 
 // Output
-Before Asynchronous Call
-After Asynchronous Call
-Sum: 30
+Data fetched
+Processing data...
+
 ```
 
 <div align="right">
@@ -861,30 +861,32 @@ Sum: 30
 
 **1. Events:**
 
-Node.js **events** module which emits named events that can cause corresponding functions or callbacks to be called. Functions ( callbacks ) listen or subscribe to a particular event to occur and when that event triggers, all the callbacks subscribed to that event are fired one by one in order to which they were registered.
-
-All objects that emit events are instances of the **EventEmitter** class. The event can be emitted or listen to an event with the help of EventEmitter
+**Events** are signals that indicate something has happened. An event listener waits for specific events to occur and triggers corresponding functions, enabling multiple handlers for the same event.
 
 **Example:**
 
 ```js
-/**
- * Events Module
- */
-const event = require('events');  
-const eventEmitter = new event.EventEmitter();  
-  
-// add listener function for Sum event  
-eventEmitter.on('Sum', function(num1, num2) {  
-    console.log('Total: ' + (num1 + num2));  
-});  
 
-// call event  
-eventEmitter.emit('Sum', 10, 20);
+const EventEmitter = require('events');
+const eventEmitter = new EventEmitter();
+
+eventEmitter.on('dataFetched', () => {
+  console.log("Processing data...");
+});
+
+setTimeout(() => {
+  console.log("Data fetched");
+  eventEmitter.emit('dataFetched');
+}, 2000);
+
 
 // Output
-Total: 30
+Data fetched
+Processing data...
+
 ```
+
+
 
 **2. Callbacks:**
 
@@ -896,22 +898,25 @@ A callback function is a function passed into another function as an argument, w
 /**
  * Callbacks
  */
-function sum(number) {
-  console.log('Total: ' + number);
+function fetchData(callback) {
+  setTimeout(() => {
+    console.log("Data fetched");
+    callback();
+  }, 2000);
 }
 
-function calculator(num1, num2, callback) {
-  let total = num1 + num2;
-  callback(total);
-}
+fetchData(() => {
+  console.log("Processing data...");
+});
 
-calculator(10, 20, sum);
 
 // Output
-Total: 30
+Data fetched
+Processing data...
+
 ```
 
-Callback functions are called when an asynchronous function returns its result, whereas event handling works on the **observer pattern**. The functions that listen to events act as Observers. Whenever an event gets fired, its listener function starts executing. Node.js has multiple in-built events available through events module and EventEmitter class which are used to bind events and event-listeners
+In the callback example, `(Processing data...)` is directly called after Data fetched. In the event example, an event listener `(dataFetched)` is set up and triggered after `(Data fetched)` occurs, making it more flexible for multiple listeners.
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>

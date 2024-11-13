@@ -203,13 +203,13 @@ Just like JS, there are two categories of data types in Node: Primitives and Obj
 
 **1. Primitives:**
 
-* Number: Represents both integer and floating-point numbers. `(Example: 42, 3.14)`
-* String: Represents a sequence of characters. Example: `("Hello, world!")`
-* Boolean: Represents a logical value, either true or false.
-* Undefined: Represents a variable that has been declared but not assigned a value.
-* Null: Represents an intentional absence of value.
-* Symbol: A unique and immutable data type, often used as identifiers for object properties.
-* BigInt: Represents integers beyond the safe range for the Number type. `(Example: 123n)`.
+* **Number**: Represents both integer and floating-point numbers. `(Example: 42, 3.14)`
+* **String**: Represents a sequence of characters. Example: `("Hello, world!")`
+* **Boolean**: Represents a logical value, either true or false.
+* **Undefined**: Represents a variable that has been declared but not assigned a value.
+* **Null**: Represents an intentional absence of value.
+* **Symbol**: A unique and immutable data type, often used as identifiers for object properties.
+* **BigInt**: Represents integers beyond the safe range for the Number type. `(Example: 123n)`.
 
 
 **2. Objects:**

@@ -142,13 +142,14 @@ npm install express --save
  */
 const express = require('express');
 const app = express();
+const port = 3000;  // Define port as a constant
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(3000, function () {
-  console.log('App listening on port 3000!');
+app.listen(port, () => {
+  console.log(`App listening on port ${port}!`);
 });
 ```
 
@@ -166,7 +167,9 @@ node app.js
 
 ## Q. Explain the concept of URL module in Node.js?
 
-The URL module in Node.js splits up a web address into readable parts. Use `require()` to include the module. Then parse an address with the `url.parse()` method, and it will return a URL object with each part of the address as properties.
+The URL module in Node.js provides utilities for URL parsing, construction, normalization, and encoding. It’s useful when working with URLs, especially in web applications and APIs where you need to handle query parameters, hostname, pathname, and other URL components.
+
+The URL module in Node.js allows you to work with web addresses by splitting them into readable parts. Using the URL class, you can create a `(URL)` object to directly access various parts of an address, such as the hostname, pathname, and query parameters. Simply use `(new URL(address))` to parse a URL, and it will return an object with each part of the address as properties. The `(URLSearchParams)` feature also provides easy access to query parameters.
 
 **Example:**
 
@@ -174,16 +177,16 @@ The URL module in Node.js splits up a web address into readable parts. Use `requ
 /**
  * URL Module in Node.js
  */
-const url = require('url');
 const adr = 'http://localhost:8080/default.htm?year=2022&month=september';
-const q = url.parse(adr, true);
+const myUrl = new URL(adr);
 
-console.log(q.host); // localhost:8080
-console.log(q.pathname); // "/default.htm"
-console.log(q.search); // "?year=2022&month=september"
+console.log(myUrl.host);       // 'localhost:8080'
+console.log(myUrl.pathname);   // '/default.htm'
+console.log(myUrl.search);     // '?year=2022&month=september'
 
-const qdata = q.query; // { year: 2022, month: 'september' }
-console.log(qdata.month); // "september"
+const qdata = myUrl.searchParams;
+console.log(qdata.get('month')); // 'september'
+
 ```
 
 <div align="right">
@@ -200,13 +203,14 @@ Just like JS, there are two categories of data types in Node: Primitives and Obj
 
 **1. Primitives:**
 
-* String
-* Number
-* BigInt
-* Boolean
-* Undefined
-* Null
-* Symbol
+* Number: Represents both integer and floating-point numbers. `(Example: 42, 3.14)`
+* String: Represents a sequence of characters. Example: `("Hello, world!")`
+* Boolean: Represents a logical value, either true or false.
+* Undefined: Represents a variable that has been declared but not assigned a value.
+* Null: Represents an intentional absence of value.
+* Symbol: A unique and immutable data type, often used as identifiers for object properties.
+* BigInt: Represents integers beyond the safe range for the Number type. `(Example: 123n)`.
+
 
 **2. Objects:**
 

@@ -343,7 +343,7 @@ console.log(!false); // true
 
 ## Q. Explain `Undefined` and `Null` data type in Node.js?
 
-  **undefined:**Represents a variable that has been declared but not assigned a value. It indicates the absence of initialization.
+  **undefined:** Represents a variable that has been declared but not assigned a value. It indicates the absence of initialization.
 
 **Example:**
 
